@@ -7,9 +7,11 @@ const cors =require("cors")
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+// Configure CORS
 const corsOptions = {
-    origin: 'https://newtodowebsite.netlify.app',
-    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+    origin: 'https://newtodowebsite.netlify.app', // Update with your Netlify URL
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   };
   
 app.use(cors(corsOptions));
