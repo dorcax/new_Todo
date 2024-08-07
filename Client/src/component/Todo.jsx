@@ -18,7 +18,7 @@ const Todo = () => {
     const handleSubmission =async(e)=>{
        try {
         e.preventDefault()
-        const results =await fetch("http://localhost:3000/task",{
+        const results =await fetch("https://new-todo-1htm.onrender.com/task",{
           method:"POST",
           headers:{
               "Accept":"application/json",

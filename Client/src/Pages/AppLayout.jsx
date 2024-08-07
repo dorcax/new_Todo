@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const AppLayout = () => {
   return (
-    <div className='flex flex-col border w-full max-w-md mx-auto my-40  shadow-lg'>
+    <div className='flex flex-col border w-full max-w-sm mx-auto my-40  shadow-lg'>
         <header className='bg-green-800 text-white text-center '>
             Todo List
         </header>

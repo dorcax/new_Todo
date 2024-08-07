@@ -7,7 +7,7 @@ const GetTodo = () => {
   useEffect(()=>{
    const fetchPost =async()=>{
   try {
-    const res =await fetch("http://localhost:3000/task")
+    const res =await fetch("https://new-todo-1htm.onrender.com/task")
       if(res.ok){
         const result =await res.json()
        setData(result.task)
@@ -23,7 +23,7 @@ const GetTodo = () => {
 
   const handleDelete =async(id)=>{
     try {
-      const task =await fetch(`http://localhost:3000/task/${id}`,{
+      const task =await fetch(`https://new-todo-1htm.onrender.com/task/${id}`,{
         method:"DELETE"
       })
       if(task.ok){
