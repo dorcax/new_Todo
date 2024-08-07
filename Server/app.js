@@ -10,6 +10,8 @@ app.use(express.json())
 // Configure CORS
 const corsOptions = {
     origin: 'https://newtodowebsite.netlify.app', // Update with your Netlify URL
+    credentials: true, // Access-Control-Allow-Credcredentials: true, // Access-Control-Allow-Credentials header
+    optionsSuccessStatus: 200, // HTTP status code for successful OPTIONS requestsentials header
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']
   };
