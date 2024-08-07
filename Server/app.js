@@ -6,7 +6,13 @@ const cors =require("cors")
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
-app.use(cors())
+
+const corsOptions = {
+    origin: 'https://newtodowebsite.netlify.app',
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+  };
+  
+app.use(cors(corsOptions));
 app.use("/task",route)
 
 
