@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useNewTaskMutation } from '../slices/userApislice'
+import { useDispatch,useSelector } from 'react-redux'
+import { createTask } from '../slices/taskReducer'
 
 const Todo = () => {
     const [data,setData] =useState({
         title:"",description:""
     })
-    const[result,setResult] =useState([])
-    const[error,setError]=useState(null)
+    // const[result,setResult] =useState([])
+    // const[error,setError]=useState(null)
+    const[createTaskApi] =useNewTaskMutation()
+    const dispatch =useDispatch()
     const navigate =useNavigate()
 
     const handleChange =(e)=>{
@@ -18,26 +23,32 @@ const Todo = () => {
     const handleSubmission =async(e)=>{
        try {
         e.preventDefault()
-        const results =await fetch("https://new-todo-1htm.onrender.com/task",{
-          method:"POST",
-          headers:{
-              "Accept":"application/json",
-              "Content-Type":"application/json"
-          },
-          body:JSON.stringify(data)
+        // const results =await fetch("https://new-todo-1htm.onrender.com/task",{
+        //   method:"POST",
+        //   headers:{
+        //       "Accept":"application/json",
+        //       "Content-Type":"application/json"
+        //   },
+        //   body:JSON.stringify(data)
 
-        })
+        // })
+        const result =await createTaskApi({title:data.title,description:data.description}).unwrap()
 
-        if(!results.ok){
-           throw new Error("error in creating task")
-        }
-        const res =await results.json()
-            setResult((prev)=>([...prev,res]))
-            console.log("task created successfully")
-            navigate("/task")
+        // if(!result.ok){
+        //    throw new Error("error in creating task")
+        // }
+        // const res =await results.json()
+        //     setResult((prev)=>([...prev,res]))
+        //     console.log("task created successfully")
+        //     navigate("/task")
+        dispatch(createTask(result))
+        console.log("task created")
+        navigate("/task")
+
 
        } catch (error) {
-        setError(error.message,"there is an error when created thhe task")
+        // setError(error.message,"there is an error when created thhe task")
+        console.log(error)
        }
 
 
